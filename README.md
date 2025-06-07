@@ -37,15 +37,9 @@ python main.py
 
 ---
 
-##  ii. Docker Setup
+## Docker Setup
 
-### Step 1: (Optional) Pre-download torch to avoid large downloads during Docker build:
-
-```bash
-pip download torch==2.1.2 --python-version 3.10 --only-binary=:all: -d torch_whl
-```
-
-### Step 2: Build and Run the Docker App
+### Build and Run the Docker App
 
 ```bash
 docker-compose up --build
