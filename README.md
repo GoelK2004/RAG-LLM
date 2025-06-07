@@ -5,7 +5,7 @@ This project implements a Retrieval-Augmented Generation (RAG) pipeline for docu
 - **FAISS** for vector search
 - **SentenceTransformer** for local text embeddings
 - Support for `.pdf`, `.docx`, and `.txt` documents
-- **Local LLM** (via Hugging Face)
+- **Mistral-7B-Instruct-v0.3** (via Hugging Face)
 - **Flask REST API** for interaction
 - **Dockerized setup** for easy deployment
 
