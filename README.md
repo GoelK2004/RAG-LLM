@@ -165,3 +165,9 @@ os.getenv("HF_TOKEN")
 ├── .env
 └── README.md
 ```
+
+---
+
+## v. Improvements
+
+1. Redundant upload check: The project can check if the file has been uploaded earlier to prevent redundant upload.
