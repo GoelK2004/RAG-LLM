@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  rag-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - ./vector_db:/vector_db/
+      - ./metadata.db:/metadata_db/
+      - ./hf_cache:/root/.cache
+    restart: unless-stopped

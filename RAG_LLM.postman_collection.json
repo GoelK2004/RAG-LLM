@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "2d55aaa0-dccc-4c67-88b1-4bb8814353fa",
+		"name": "RAG LLM",
+		"description": "Postman test suite for the Flask RAG project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33480096"
+	},
+	"item": [
+		{
+			"name": "Upload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
+							"\r",
+							"pm.test(\"File upload returned success\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.Response).to.be.an(\"array\");\r",
+							"    pm.expect(json.Response[0].status).to.eql(\"Success\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "file_system.txt"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": "LLMSpecialist.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/upload/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"upload",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
+							"\r",
+							"pm.test(\"Answer exists\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.Answer).to.be.a(\"object\");\r",
+							"    pm.expect(json.source_chunks).to.be.an(\"array\").that.is.not.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"question\": \"What are the features of file system?\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/query/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"query",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
+							"\r",
+							"pm.test(\"Answer exists\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.Answer).to.be.a(\"object\");\r",
+							"    pm.expect(json.source_chunks).to.be.an(\"array\").that.is.not.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"question\": \"What do we have to do in RAG project\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/query/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"query",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Metadata",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
+							"\r",
+							"pm.test(\"Metadata includes filename, upload_time, chunk_count\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.be.an(\"array\");\r",
+							"\r",
+							"    if (json.length > 0) {\r",
+							"        pm.expect(json[0]).to.have.property(\"Filename\");\r",
+							"        pm.expect(json[0]).to.have.property(\"Pages\");\r",
+							"        pm.expect(json[0]).to.have.property(\"Time\");\r",
+							"        pm.expect(json[0]).to.have.property(\"Chunks\");\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/metadata/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"metadata",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
