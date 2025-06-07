@@ -58,7 +58,6 @@ def upload_document():
 				})
 				continue
 			
-		file.stream.seek(0)
 		text = extract_text(fileName, fileContent)
 		if not text:
 			responses.append({
