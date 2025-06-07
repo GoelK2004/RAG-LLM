@@ -159,7 +159,6 @@ os.getenv("HF_TOKEN")
 │   ├── test_metadata.py
 │   ├── test_query.py
 │   └── test_upload.py
-├── torch_whl/
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
