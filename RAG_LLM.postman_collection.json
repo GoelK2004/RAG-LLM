@@ -37,12 +37,12 @@
 						{
 							"key": "files",
 							"type": "file",
-							"src": "file_system.txt"
+							"src": "<file_path>"
 						},
 						{
 							"key": "files",
 							"type": "file",
-							"src": "LLMSpecialist.pdf"
+							"src": "<file_path>"
 						}
 					]
 				},
